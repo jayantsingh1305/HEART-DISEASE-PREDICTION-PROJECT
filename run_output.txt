@@ -1,0 +1,64 @@
+   Age Sex ChestPainType  ...  Oldpeak  ST_Slope  HeartDisease
+0   40   M           ATA  ...      0.0        Up             0
+1   49   F           NAP  ...      1.0      Flat             1
+2   37   M           ATA  ...      0.0        Up             0
+3   48   F           ASY  ...      1.5      Flat             1
+4   54   M           NAP  ...      0.0        Up             0
+
+[5 rows x 12 columns]
+------
+Index(['Age', 'Sex', 'ChestPainType', 'RestingBP', 'Cholesterol', 'FastingBS',
+       'RestingECG', 'MaxHR', 'ExerciseAngina', 'Oldpeak', 'ST_Slope',
+       'HeartDisease'],
+      dtype='str')
+------
+(918, 12)
+------
+<bound method DataFrame.info of      Age Sex ChestPainType  ...  Oldpeak  ST_Slope  HeartDisease
+0     40   M           ATA  ...      0.0        Up             0
+1     49   F           NAP  ...      1.0      Flat             1
+2     37   M           ATA  ...      0.0        Up             0
+3     48   F           ASY  ...      1.5      Flat             1
+4     54   M           NAP  ...      0.0        Up             0
+..   ...  ..           ...  ...      ...       ...           ...
+913   45   M            TA  ...      1.2      Flat             1
+914   68   M           ASY  ...      3.4      Flat             1
+915   57   M           ASY  ...      1.2      Flat             1
+916   57   F           ATA  ...      0.0      Flat             1
+917   38   M           NAP  ...      0.0        Up             0
+
+[918 rows x 12 columns]>
+------
+<bound method NDFrame.describe of      Age Sex ChestPainType  ...  Oldpeak  ST_Slope  HeartDisease
+0     40   M           ATA  ...      0.0        Up             0
+1     49   F           NAP  ...      1.0      Flat             1
+2     37   M           ATA  ...      0.0        Up             0
+3     48   F           ASY  ...      1.5      Flat             1
+4     54   M           NAP  ...      0.0        Up             0
+..   ...  ..           ...  ...      ...       ...           ...
+913   45   M            TA  ...      1.2      Flat             1
+914   68   M           ASY  ...      3.4      Flat             1
+915   57   M           ASY  ...      1.2      Flat             1
+916   57   F           ATA  ...      0.0      Flat             1
+917   38   M           NAP  ...      0.0        Up             0
+
+[918 rows x 12 columns]>
+------
+0
+------
+Axes(0.125,0.11;0.775x0.77)
+------
+Age               0
+Sex               0
+ChestPainType     0
+RestingBP         0
+Cholesterol       0
+FastingBS         0
+RestingECG        0
+MaxHR             0
+ExerciseAngina    0
+Oldpeak           0
+ST_Slope          0
+HeartDisease      0
+dtype: int64
+------
