@@ -7,6 +7,16 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import (
+    ConfusionMatrixDisplay,
+    RocCurveDisplay,
+    accuracy_score,
+    classification_report,
+    roc_auc_score,
+)
+from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 
 warnings.filterwarnings("ignore")
@@ -99,6 +109,61 @@ def preprocess_data(df: pd.DataFrame) -> pd.DataFrame:
     return encoded
 
 
+def train_and_evaluate(df_encoded: pd.DataFrame) -> None:
+    X = df_encoded.drop(columns=["HeartDisease"])
+    y = df_encoded["HeartDisease"]
+
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.2, random_state=42, stratify=y
+    )
+
+    models = {
+        "Logistic Regression": LogisticRegression(max_iter=1000, random_state=42),
+        "Random Forest": RandomForestClassifier(n_estimators=100, random_state=42),
+    }
+
+    for name, model in models.items():
+        model.fit(X_train, y_train)
+        y_pred = model.predict(X_test)
+        y_prob = model.predict_proba(X_test)[:, 1]
+
+        print(f"\n{'='*40}")
+        print(f"Model: {name}")
+        print(f"Accuracy : {accuracy_score(y_test, y_pred):.4f}")
+        print(f"ROC-AUC  : {roc_auc_score(y_test, y_prob):.4f}")
+        print(classification_report(y_test, y_pred))
+
+        # Confusion matrix
+        fig, axes = plt.subplots(1, 2, figsize=(12, 4))
+        ConfusionMatrixDisplay.from_predictions(y_test, y_pred, ax=axes[0])
+        axes[0].set_title(f"{name} — Confusion Matrix")
+
+        # ROC curve
+        RocCurveDisplay.from_predictions(y_test, y_prob, ax=axes[1])
+        axes[1].set_title(f"{name} — ROC Curve")
+
+        fig.tight_layout()
+        safe_name = name.lower().replace(" ", "_")
+        out_path = OUTPUT_DIR / f"{safe_name}_evaluation.png"
+        fig.savefig(out_path, dpi=150, bbox_inches="tight")
+        plt.close(fig)
+        print(f"Saved {out_path}")
+
+    # Feature importance from Random Forest
+    rf_model = models["Random Forest"]
+    importances = pd.Series(rf_model.feature_importances_, index=X.columns)
+    importances = importances.sort_values(ascending=False)
+
+    fig, axis = plt.subplots(figsize=(10, 6))
+    sns.barplot(x=importances.values, y=importances.index, ax=axis)
+    axis.set_title("Random Forest — Feature Importances")
+    fig.tight_layout()
+    out_path = OUTPUT_DIR / "feature_importances.png"
+    fig.savefig(out_path, dpi=150, bbox_inches="tight")
+    plt.close(fig)
+    print(f"Saved {out_path}")
+
+
 def main() -> None:
     df = load_data()
 
@@ -118,6 +183,8 @@ def main() -> None:
 
     df_encoded = preprocess_data(df)
     print(df_encoded.head())
+
+    train_and_evaluate(df_encoded)
     print("Script executed successfully.")
 
 
