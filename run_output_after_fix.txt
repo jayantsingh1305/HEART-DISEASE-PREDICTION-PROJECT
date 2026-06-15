@@ -1,0 +1,84 @@
+C:\Users\jayant.singh\OneDrive - AssetMark, Inc\AI-ML Learning\HEART DISEASE PREDICTION PROJECT\heart_disease_prediction.py:38: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown
+  plt.show()
+   Age Sex ChestPainType  ...  Oldpeak  ST_Slope  HeartDisease
+0   40   M           ATA  ...      0.0        Up             0
+1   49   F           NAP  ...      1.0      Flat             1
+2   37   M           ATA  ...      0.0        Up             0
+3   48   F           ASY  ...      1.5      Flat             1
+4   54   M           NAP  ...      0.0        Up             0
+
+[5 rows x 12 columns]
+------
+Index(['Age', 'Sex', 'ChestPainType', 'RestingBP', 'Cholesterol', 'FastingBS',
+       'RestingECG', 'MaxHR', 'ExerciseAngina', 'Oldpeak', 'ST_Slope',
+       'HeartDisease'],
+      dtype='str')
+------
+(918, 12)
+------
+<class 'pandas.DataFrame'>
+RangeIndex: 918 entries, 0 to 917
+Data columns (total 12 columns):
+ #   Column          Non-Null Count  Dtype  
+---  ------          --------------  -----  
+ 0   Age             918 non-null    int64  
+ 1   Sex             918 non-null    str    
+ 2   ChestPainType   918 non-null    str    
+ 3   RestingBP       918 non-null    int64  
+ 4   Cholesterol     918 non-null    int64  
+ 5   FastingBS       918 non-null    int64  
+ 6   RestingECG      918 non-null    str    
+ 7   MaxHR           918 non-null    int64  
+ 8   ExerciseAngina  918 non-null    str    
+ 9   Oldpeak         918 non-null    float64
+ 10  ST_Slope        918 non-null    str    
+ 11  HeartDisease    918 non-null    int64  
+dtypes: float64(1), int64(6), str(5)
+memory usage: 86.2 KB
+------
+              Age   RestingBP  ...     Oldpeak  HeartDisease
+count  918.000000  918.000000  ...  918.000000    918.000000
+mean    53.510893  132.396514  ...    0.887364      0.553377
+std      9.432617   18.514154  ...    1.066570      0.497414
+min     28.000000    0.000000  ...   -2.600000      0.000000
+25%     47.000000  120.000000  ...    0.000000      0.000000
+50%     54.000000  130.000000  ...    0.600000      1.000000
+75%     60.000000  140.000000  ...    1.500000      1.000000
+max     77.000000  200.000000  ...    6.200000      1.000000
+
+[8 rows x 7 columns]
+------
+0
+------
+Axes(0.125,0.11;0.775x0.77)
+------
+Age               0
+Sex               0
+ChestPainType     0
+RestingBP         0
+Cholesterol       0
+FastingBS         0
+RestingECG        0
+MaxHR             0
+ExerciseAngina    0
+Oldpeak           0
+ST_Slope          0
+HeartDisease      0
+dtype: int64
+------
+Script executed successfully.
+------
+Cholesterol
+0      172
+254     11
+223     10
+220     10
+211      9
+      ... 
+353      1
+278      1
+157      1
+176      1
+131      1
+Name: count, Length: 222, dtype: int64
+244.6353887399464
